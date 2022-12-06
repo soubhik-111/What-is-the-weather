@@ -1,15 +1,24 @@
 # What-s-the-weather
 Here you can check your weather of your city/country.
 
+
 ## Live link
 https://weather-111.netlify.app/
+
+
+## Skills
+    HTML5
+    CSS3
+    JAVASCRIPT
+    BOOTSTRAP
+      
 
 
 ## Usage
 It is used to check weather of different places
 
-## Contributing
 
+## Contributing
 Pull requests are welcome. For major changes, please open an issue first
 to discuss what you would like to change.
 
