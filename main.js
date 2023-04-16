@@ -1,3 +1,6 @@
+const city = document.getElementById('city');
+
+
 const options = {
     method: 'GET',
     headers: {
@@ -5,7 +8,16 @@ const options = {
         'X-RapidAPI-Host': 'weather-by-api-ninjas.p.rapidapi.com'
     }
 };
+
+const capitalizer = (name) =>{
+    let newName = name.split(" ").map(ele=>ele.charAt(0).toUpperCase() + ele.slice(1).toLowerCase()).join(" ")
+    return newName;
+}
+
 let cityname = "Dhanbad";
+
+
+
 const getWeather = (city) => {
     // document.getElementById('cityname').innerHTML = city
 
@@ -50,7 +62,8 @@ const getWeather = (city) => {
 
 submit.addEventListener("click", (e) => {
     e.preventDefault()
-    getWeather(city.value)
+    let cityName = capitalizer(city.value)
+    getWeather(cityName)
 })
 let refresh_tag = document.querySelectorAll(".refresh")
 
