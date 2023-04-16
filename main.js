@@ -1,5 +1,6 @@
 const city = document.getElementById('city');
-
+const refresh_tag = document.querySelectorAll(".refresh")
+let cityname = "Dhanbad";
 
 const options = {
     method: 'GET',
@@ -14,33 +15,11 @@ const capitalizer = (name) =>{
     return newName;
 }
 
-let cityname = "Dhanbad";
-
-
-
 const getWeather = (city) => {
-    // document.getElementById('cityname').innerHTML = city
-
     fetch(`https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=${city}`, options)
         .then(response => response.json())
         .then(response => {
-            console.log(response)
-            if (response.error) {
-                msg.innerText=response.error;
-                cloud_pct.innerHTML = '-';
-                temp.innerHTML = '-';
-                temp1.innerHTML = '-';
-                feels_like.innerHTML = '-';
-                humidity.innerHTML = '-';
-                humidity1.innerHTML = '-';
-                min_temp.innerHTML = '-';
-                max_temp.innerHTML = '-';
-                wind_speed.innerHTML = '-';
-                wind_speed1.innerHTML = '-';
-                sunrise.innerHTML = '-';
-                sunset.innerHTML = '-';
-            }
-            else {
+            if(response.temp) {
                 cityname=city;
                 msg.innerText=`Weather for ${city}`
                 cloud_pct.innerHTML = response.cloud_pct
@@ -56,6 +35,21 @@ const getWeather = (city) => {
                 sunrise.innerHTML = response.sunrise
                 sunset.innerHTML = response.sunset
             }
+            else{
+                msg.innerText="An unexpected error occured.";
+                cloud_pct.innerHTML = '-';
+                temp.innerHTML = '-';
+                temp1.innerHTML = '-';
+                feels_like.innerHTML = '-';
+                humidity.innerHTML = '-';
+                humidity1.innerHTML = '-';
+                min_temp.innerHTML = '-';
+                max_temp.innerHTML = '-';
+                wind_speed.innerHTML = '-';
+                wind_speed1.innerHTML = '-';
+                sunrise.innerHTML = '-';
+                sunset.innerHTML = '-';
+            }
         })
         .catch(err => console.error(err));
 }
@@ -65,7 +59,6 @@ submit.addEventListener("click", (e) => {
     let cityName = capitalizer(city.value)
     getWeather(cityName)
 })
-let refresh_tag = document.querySelectorAll(".refresh")
 
 for (let index = 0; index < refresh_tag.length; index++) {
     refresh_tag[index].addEventListener("click", () => {
